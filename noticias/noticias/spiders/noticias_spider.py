@@ -15,6 +15,6 @@ class NoticiasSpider(CrawlSpider):
         sel = Selector(response)
         noticia = NoticiasItem()
         noticia['title'] = sel.css("#content-middle .page-titles::text").extract()
-        noticia['description'] = sel.css("#content-middle .node p::text").extract()
+        noticia['description'] = sel.css("#content-middle .node .content p ::text").extract()
         noticia['url'] = response.url
         return noticia
