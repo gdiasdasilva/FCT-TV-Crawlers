@@ -9,3 +9,4 @@ class NoticiasItem(Item):
     title = Field()
     description = Field()
     url = Field()
+    date = Field()

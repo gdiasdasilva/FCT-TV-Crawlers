@@ -1,6 +1,7 @@
 from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.selector import Selector
+from scrapy.http.request import Request
 from noticias.items import NoticiasItem
 
 class NoticiasSpider(CrawlSpider):
@@ -9,12 +10,23 @@ class NoticiasSpider(CrawlSpider):
     start_urls = [
         "http://www.fct.unl.pt/noticias"
     ]
-    rules = [Rule(SgmlLinkExtractor(allow=['/noticias/2014/\d+']), 'parse_noticia')]
 
-    def parse_noticia(self, response):
+    def parse(self, response):
         sel = Selector(response)
-        noticia = NoticiasItem()
-        noticia['title'] = sel.css('.content > p::text').extract()[0]
-        noticia['description'] = sel.css("#content-middle .node .content p ::text").extract()
-        noticia['url'] = response.url
-        return noticia
+        noticias = sel.css('.views-row')
+        items = []
+        for noticia in noticias:
+            item = NoticiasItem()
+            link = "http://www.fct.unl.pt" + noticia.css('.views-field-title a::attr(href)').extract()[0].strip()
+            item['date'] = noticia.css('.views-field-created > span::text').extract()[0].strip()
+            item = Request(url = link, callback = self.getInfo, meta={'item': item})
+            items.append(item)
+        return items
+
+    def getInfo(self, response):
+        sel = Selector(response)
+        item = response.request.meta['item']
+        item['title'] = sel.css('#content-middle h1::text').extract()[0]
+        item['description'] = sel.css("#content-middle .node .content p ::text").extract()
+        item['url'] = response.url
+        return item
