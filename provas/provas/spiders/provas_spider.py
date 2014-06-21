@@ -28,7 +28,7 @@ class ProvasSpider(CrawlSpider):
         sel = Selector(response)
         item = response.request.meta['item']
         item['url'] = response.url
-        item['title'] = sel.css('.node p::text').extract()[0]
+        item['title'] = sel.css('.node p ::text').extract()
         item['department'] = sel.css('.node .field-field-local-evento .field-item::text').extract()[0].strip()
         item['classroom'] = sel.css('.node .field-field-specific-location .field-item::text').extract()[0].strip()
         return item
