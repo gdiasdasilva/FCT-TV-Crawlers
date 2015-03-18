@@ -1,11 +1,7 @@
 FCT TV — Crawlers
 =================
 
-##Authors
-
-* Gonçalo Dias da Silva
-* João Francisco Pinto
-* Rui Carvalho
+<img src="https://dl.dropboxusercontent.com/u/2937374/GitHub%20Images/Logo.png" width="200px">
 
 ##General info
 
@@ -33,3 +29,9 @@ To run each crawler, change to its root directory and type:
 #####Example
 Crawl the news from FCT-UNL's website:
 * `scrapy crawl noticias -o myoutput.json -t json`
+
+##Authors
+
+* Gonçalo Dias da Silva
+* João Francisco Pinto
+* Rui Carvalho
