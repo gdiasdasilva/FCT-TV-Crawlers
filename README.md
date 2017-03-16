@@ -1,9 +1,9 @@
 FCT TV — Crawlers
 =================
 
-<img src="https://dl.dropboxusercontent.com/u/2937374/GitHub%20Images/Logo.png" width="200px">
+<img src="http://imgur.com/ZoDtdrI.png" width="200px">
 
-##General info
+## General info
 
 **FCT TV** is an idea for a campus' TV at FCT-UNL, which will satisfy the student's needs and raise the awareness for the interesting events that are offered every day.
 
@@ -14,7 +14,7 @@ Our solution has 4 different parts:
 * <a href="https://github.com/gdiasdasilva/FCT-TV-TVClient" target="_blank">TV Client</a>
 * iPhone app
 
-##Description
+## Description
 
 This component is based on three python scripts that crawl specific information from FCT-UNL's official website in a daily basis:
 * Meal
@@ -26,11 +26,11 @@ The technology used was <a href="http://scrapy.org" target="_blank">Scrapy</a>.
 To run each crawler, change to its root directory and type:
 * `scrapy crawl spider_name -o outputFileName.json -t json`
 
-#####Example
+##### Example
 Crawl the news from FCT-UNL's website:
 * `scrapy crawl noticias -o myoutput.json -t json`
 
-##Authors
+## Authors
 
 * Gonçalo Dias da Silva
 * João Francisco Pinto
